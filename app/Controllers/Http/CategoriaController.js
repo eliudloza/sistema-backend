@@ -4,7 +4,7 @@ const Cate= use ('App/Models/Modelos/Categoria');
 class CategoriaController {
 
      async crearCategoria({request, response}) {
-        const categoria = new Cate()
+        const categoria = await Cate()
         const {nombre, descripcion} = request.all()
 
         categoria.nombre = nombre
@@ -15,7 +15,7 @@ class CategoriaController {
     }
 
     async eliminarCategoria({request, response}){
-        const categoria = new Cate.find(request.id)
+        const categoria = await Cate.find(request.id)
 
         if(categoria.delete())
             return response().json(categoria,202);
@@ -23,7 +23,7 @@ class CategoriaController {
     }
 
     async actualizarCategoria({response,request}){
-        const categoria = new Cate.find(request.id)
+        const categoria = await Cate.find(request.id)
         const {nombre, descripcion} = request.all()
 
         categoria.nombre = nombre;
@@ -34,10 +34,10 @@ class CategoriaController {
         return response().json(null,422);
     }
 
-     async index(){
-        const data = new Cate.all().toArray();
+     async index({response}){
+        const  data = await Cate.all()
 
-        return view('categorias',['data' , data] );
+        return response.status(200).json(data)
     }
     async show(){
         const data = new Cate.all().toArray();

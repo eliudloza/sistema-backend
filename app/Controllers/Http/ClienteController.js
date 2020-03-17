@@ -3,7 +3,7 @@ const Cliente = use ('App/Models/Modelos/Cliente');
 class ClienteController {
 
     async crearCliente({request, response}){
-      let cliente = new Cliente()
+      let cliente = await Cliente()
       let obj = request.all()
 
       cliente.nombre = obj.nombre
@@ -25,7 +25,7 @@ class ClienteController {
     }
 
     async eliminarCliente({request}){
-        const cliente = new Cliente().find(request.id)
+        const cliente = await Cliente().find(request.id)
 
         if(cliente.delete())
         return response.json(cliente, 200)
@@ -33,7 +33,7 @@ class ClienteController {
     }
 
     async actualizarCliente({response,request}){
-        const cliente = new Cliente.find(request.id)
+        const cliente = await Cliente.find(request.id)
         const {nombre, ap_paterno, ap_materno,direccion, ciudad, telefono} = request.all()
 
         cliente.nombre = nombre
@@ -49,9 +49,9 @@ class ClienteController {
     }
 
     async index(){
-        const data = new Cliente.all().toArray();
+      const  data = await Cliente.all()
 
-        return view('clientes',['data' , data] );
+      return response.status(200).json(data)
     }
 }
 

@@ -5,7 +5,7 @@ const Provee = use ('App/Models/Modelos/Proveedor');
 class ProveedoreController {
 
     async crear({request, response}) {
-        const proveedor = new Provee()
+        const proveedor = await Provee()
         const {nombre, direccion, ciudad, compania, telefono} = request.all()
 
         proveedor.nombre  = nombre
@@ -20,14 +20,14 @@ class ProveedoreController {
     }
 
     async  eliminarProveedor( {request,response}) {
-        const proveedor = new Provee.find(request.id)
+        const proveedor = await Provee.find(request.id)
 
         if(proveedor.delete())
             return response().json(proveedor,202);
         return response().json(null,422);
     }
     async  actualizarProveedor( {request,response}) {
-        const proveedor = new Provee.find(request.id);
+        const proveedor = await Provee.find(request.id);
 
         proveedor.nombre = nombre
         proveedor.direccion =direccion
@@ -40,10 +40,10 @@ class ProveedoreController {
         return response().json(null,422);
     }
 
-    async index(){
-        const data = new Provee.all().toArray();
+    async index({response}){
+        const  data = await Producto.all()
 
-        return view('proveedores',['data' , data] );
+        return response.status(200).json(data)
     }
 
 }

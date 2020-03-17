@@ -5,7 +5,7 @@ const Orden = use ('App/Models/Modelos/Orden');
 class OrdeneController {
 
     async crearOrdenes( {request,response}){
-       const orden = new Orden();
+       const orden = await Orden();
        const {fecha, empleado, cliente}= request.all()
         orden.fecha= fecha
         orden.empleado =empleado
@@ -17,7 +17,7 @@ class OrdeneController {
     }
 
     async eliminarOrden( {request, response}) {
-        const orden = new Orden.find(request.id);
+        const orden = await Orden.find(request.id);
 
         if(orden.delete())
             return response().json(orden,202)
@@ -25,7 +25,7 @@ class OrdeneController {
     }
 
     async actualizarOrden( {request, response}) {
-        const orden =new Orden.find($request.id)
+        const orden = await Orden.find($request.id)
         const {fecha, empleado, cliente}= request.all()
         orden.fecha= fecha
         orden.empleado =empleado
@@ -37,15 +37,11 @@ class OrdeneController {
         return response().json(null,422);
     }
 
-   /* async index(){
-      const  data =new Orden.all().toArray();
-        data = DB.table('ordenes')
-            ->join('users', 'ordenes.usuario', '=', 'users.id')
-            ->select('ordenes.*', 'ordenes.usuario as user')
-            ->orderBy('id','desc')
-            ->get();
-        return view('orden',['data' , data] );
-    }*/
+    async index({response}){
+        const  data = await Orden.all()
+
+        return response.status(200).json(data)
+    }
 }
 
 module.exports = OrdeneController
