@@ -3,7 +3,7 @@ const Cliente = use ('App/Models/Modelos/Cliente');
 class ClienteController {
 
     async crearCliente({request, response}){
-      let cliente = await Cliente()
+      const cliente = new Cliente()
       let obj = request.all()
 
       cliente.nombre = obj.nombre
@@ -24,16 +24,19 @@ class ClienteController {
 
     }
 
-    async eliminarCliente({request}){
-        const cliente = await Cliente().find(request.id)
+    async eliminarCliente({params, response}){
+        const cliente = await Cliente.find(params.id)
 
-        if(cliente.delete())
-        return response.json(cliente, 200)
+        if(!cliente){ 
+          return response.status(404).json( {data : 'Datos no encontrados'})
+        }
+        await cliente.delete()
+        return response.status(204).json()
 
     }
 
     async actualizarCliente({response,request}){
-        const cliente = await Cliente.find(request.id)
+        const cliente = new Cliente.find(request.id)
         const {nombre, ap_paterno, ap_materno,direccion, ciudad, telefono} = request.all()
 
         cliente.nombre = nombre

@@ -19,6 +19,7 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 
 
+Route.group(()=>{
 //Usuarios
 Route.post('/registro','UserController.registro')
 Route.post('/login','UserController.login')
@@ -67,3 +68,5 @@ Route.post('/creaDetalle', 'DetalleDeOrdeneController.crearDetalle')
 Route.delete('/eliminaDetalle', 'DetalleDeOrdeneController.eliminarDetalle')
 Route.post('/actualizaDetalle', 'DetalleDeOrdeneController.actualizarDetalle')
 Route.get('/indexDetalle', 'DetalleDeOrdeneController.index')
+
+}).prefix('/usuarios')
