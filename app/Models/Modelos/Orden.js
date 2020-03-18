@@ -4,6 +4,8 @@
 const Model = use('Model')
 
 class Orden extends Model {
+
+    static get table () { return 'ordenes' }
     
 }
 
