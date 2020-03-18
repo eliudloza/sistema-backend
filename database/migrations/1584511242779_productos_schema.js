@@ -11,7 +11,7 @@ class ProductosSchema extends Schema {
       table.integer('precio')
       table.integer('cantidad')
       table.integer('categoria').unsigned().notNullable().references('id').inTable('categorias')
-      table.integer('vendedor').unsigned().notNullable().references('id').inTable('vendedores')
+      table.integer('vendedor').unsigned().notNullable().references('id').inTable('vendedor')
       table.timestamps()
     })
   }

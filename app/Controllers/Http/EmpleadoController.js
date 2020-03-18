@@ -51,7 +51,7 @@ class EmpleadoController {
 
     }
 
-    async index(){
+    async index({response}){
       const  data = await Empleado.all()
 
       return response.status(200).json(data)

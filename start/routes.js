@@ -58,7 +58,7 @@ Route.post('/actualizaEmple', 'EmpleadoController.actualizarEmpleado')
 Route.get('/indexEmple', 'EmpleadoController.index')
 
 //Ordenes
-Route.post('/creaOrden', 'OrdeneController.crearOrden')
+Route.post('/creaOrden', 'OrdeneController.crearO')
 Route.delete('/eliminaOrden', 'OrdeneController.eliminarOrden')
 Route.post('/actualizaOrden', 'OrdeneController.actualizarOrden')
 Route.get('/indexOrden', 'OrdeneController.index')

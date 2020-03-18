@@ -4,16 +4,21 @@ const Orden = use ('App/Models/Modelos/Orden');
 
 class OrdeneController {
 
-    async crearOrdenes( {request,response}){
-       const orden = await Orden();
-       const {fecha, empleado, cliente}= request.all()
-        orden.fecha= fecha
-        orden.empleado =empleado
-        orden.cliente = cliente
+    async crearO( {request,response}){
+       const orden = new Orden();
+       let obj = request.all()
 
-        if (orden.save())
-        return response().json(orden, 202)
-    return response().json(null,422)
+        orden.fecha= obj.fecha
+        orden.empleado =obj.empleado
+        orden.cliente = obj.cliente
+
+        let data = await orden.save()
+        if(data) {
+            return response.status(201).json({message: "Empleado creado con exito"})
+        }else{
+            return response.status(401)
+        }
+        
     }
 
     async eliminarOrden( {request, response}) {

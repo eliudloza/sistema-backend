@@ -3,7 +3,7 @@ const Detalle = use ('App/Models/Modelos/DetalleDeOrden');
 
 class DetalleDeOrdenController {
 
-    async crearOrdenes( {request, response}){
+    async crearDetalle( {request, response}){
         const detalle = await Detalle();
         const {precio, cantidad, producto, orden} = request.all();
 
