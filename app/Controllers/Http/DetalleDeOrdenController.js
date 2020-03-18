@@ -3,8 +3,8 @@ const Detalle = use ('App/Models/Modelos/DetalleDeOrden');
 
 class DetalleDeOrdenController {
 
-    async crearOrdenes( {request, response}){
-        const detalle = await Detalle();
+    async crearDetalle( {request, response}){
+        const detalle = new Detalle();
         const {precio, cantidad, producto, orden} = request.all();
 
         detalle.precio= precio
@@ -13,8 +13,8 @@ class DetalleDeOrdenController {
         detalle.orden = orden
 
         if (detalle.save())
-        return response().json(detalle, 202)
-    return response().json(null,422)
+        return response.json(detalle, 202)
+            return response.json(null,422)
     }
 
     async eliminarDetalle( {request,response}) {

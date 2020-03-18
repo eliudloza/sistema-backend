@@ -51,7 +51,7 @@ class ClienteController {
 
     }
 
-    async index(){
+    async index({response}){
       const  data = await Cliente.all()
 
       return response.status(200).json(data)

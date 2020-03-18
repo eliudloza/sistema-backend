@@ -58,13 +58,13 @@ Route.post('/actualizaEmple', 'EmpleadoController.actualizarEmpleado')
 Route.get('/indexEmple', 'EmpleadoController.index')
 
 //Ordenes
-Route.post('/creaOrden', 'OrdeneController.crearOrden')
+Route.post('/creaOrden', 'OrdeneController.crearO')
 Route.delete('/eliminaOrden', 'OrdeneController.eliminarOrden')
 Route.post('/actualizaOrden', 'OrdeneController.actualizarOrden')
 Route.get('/indexOrden', 'OrdeneController.index')
 
 //Detalle
-Route.post('/creaDetalle', 'DetalleDeOrdeneController.crearDetalle')
+Route.post('/creaDetalle', 'DetalleDeOrdenController.crearDetalle')
 Route.delete('/eliminaDetalle', 'DetalleDeOrdeneController.eliminarDetalle')
 Route.post('/actualizaDetalle', 'DetalleDeOrdeneController.actualizarDetalle')
 Route.get('/indexDetalle', 'DetalleDeOrdeneController.index')

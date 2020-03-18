@@ -4,24 +4,26 @@ const Orden = use ('App/Models/Modelos/Orden');
 
 class OrdeneController {
 
-    async crearOrdenes( {request,response}){
-       const orden = await Orden();
-       const {fecha, empleado, cliente}= request.all()
-        orden.fecha= fecha
-        orden.empleado =empleado
-        orden.cliente = cliente
+    async crearO( {request,response}){
+       const orden = new Orden();
+       let obj = request.all()
+
+        orden.fecha= obj.fecha
+        orden.empleado =obj.empleado
+        orden.cliente = obj.cliente
 
         if (orden.save())
-        return response().json(orden, 202)
-    return response().json(null,422)
+        return response.json(orden, 202)
+            return response.json(null,422)
+        
     }
 
     async eliminarOrden( {request, response}) {
         const orden = await Orden.find(request.id);
 
         if(orden.delete())
-            return response().json(orden,202)
-        return response().json(null,422)
+            return response.json(orden,202)
+        return response.json(null,422)
     }
 
     async actualizarOrden( {request, response}) {
@@ -33,8 +35,8 @@ class OrdeneController {
 
 
         if(orden.save())
-            return response().json(orden,202);
-        return response().json(null,422);
+            return response.json(orden,202);
+        return response.json(null,422);
     }
 
     async index({response}){

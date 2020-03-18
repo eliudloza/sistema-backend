@@ -10,19 +10,32 @@ class ProveedoreController {
 
         proveedor.nombre = obj.nombre
         proveedor.direccion = obj.direccion
+<<<<<<< HEAD
         proveedor.ciudad = obj.ciudad
         proveedor.compania = obj.compania
         proveedor.telefono = obj.telefono
+=======
+        proveedor.ciudad    = obj.ciudad
+        proveedor.compania   = obj.compania
+        proveedor.telefono    = obj.telefono
+>>>>>>> d729481eed11f8fffec3287cfcf62ca387f1d5eb
 
         try {
             let data = await proveedor.save()
             if(data) {
+<<<<<<< HEAD
                 return response.status(201).send({message: "Proveedor creado con exito"})
+=======
+              return response.status(201).send({message: "Proveedor creado con exito"})
+>>>>>>> d729481eed11f8fffec3287cfcf62ca387f1d5eb
             }
         } catch(error) {
             return response.status(401)
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d729481eed11f8fffec3287cfcf62ca387f1d5eb
     }
 
     async  eliminarProveedor( {request,response}) {
@@ -47,7 +60,7 @@ class ProveedoreController {
     }
 
     async index({response}){
-        const  data = await Producto.all()
+        const  data = await Provee.all()
 
         return response.status(200).json(data)
     }
