@@ -12,12 +12,9 @@ class OrdeneController {
         orden.empleado =obj.empleado
         orden.cliente = obj.cliente
 
-        let data = await orden.save()
-        if(data) {
-            return response.status(201).json({message: "Empleado creado con exito"})
-        }else{
-            return response.status(401)
-        }
+        if (orden.save())
+        return response().json(orden, 202)
+    return response.json(null,422)
         
     }
 
@@ -25,8 +22,8 @@ class OrdeneController {
         const orden = await Orden.find(request.id);
 
         if(orden.delete())
-            return response().json(orden,202)
-        return response().json(null,422)
+            return response.json(orden,202)
+        return response.json(null,422)
     }
 
     async actualizarOrden( {request, response}) {
@@ -38,8 +35,8 @@ class OrdeneController {
 
 
         if(orden.save())
-            return response().json(orden,202);
-        return response().json(null,422);
+            return response.json(orden,202);
+        return response.json(null,422);
     }
 
     async index({response}){
