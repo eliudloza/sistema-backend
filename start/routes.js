@@ -32,8 +32,8 @@ Route.delete('/eliminaCate', 'CategoriaController.eliminarCategoria')
 Route.post('/actualizaCate', 'CategoriaController.actualizarCategoria')
 Route.get('/indexCate', 'CategoriaController.index')
 
-//Proveedores
-Route.post('/creaprovee', 'ProveedoreController.crear')
+//Vendedores
+Route.post('/crearVendedor', 'VendedorController.crear')
 Route.delete('/eliminaProvee', 'ProveedoreController.eliminarProveedor')
 Route.post('/actualizaProvee', 'ProveedoreController.actualizarProveedor')
 Route.get('/indexProvee', 'ProveedoreController.index')

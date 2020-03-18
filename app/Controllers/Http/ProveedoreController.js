@@ -5,18 +5,24 @@ const Provee = use ('App/Models/Modelos/Vendedor');
 class ProveedoreController {
 
     async crear({request, response}) {
-        const proveedor = new Provee()
+        let proveedor = new Provee()
         let obj = request.all()
 
-        proveedor.nombre  = obj.nombre
+        proveedor.nombre = obj.nombre
         proveedor.direccion = obj.direccion
-        proveedor.ciudad    = obj.ciudad
-        proveedor.compania   = obj.compania
-        proveedor.telefono       = obj.telefono
+        proveedor.ciudad = obj.ciudad
+        proveedor.compania = obj.compania
+        proveedor.telefono = obj.telefono
 
+        try {
+            let data = await proveedor.save()
+            if(data) {
+                return response.status(201).send({message: "Proveedor creado con exito"})
+            }
+        } catch(error) {
+            return response.status(401)
+        }
 
-        await proveedor.save()
-        return response.send("proveedor creada")
     }
 
     async  eliminarProveedor( {request,response}) {
