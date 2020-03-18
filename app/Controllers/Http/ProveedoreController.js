@@ -1,18 +1,18 @@
 'use strict'
 
-const Provee = use ('App/Models/Modelos/Proveedor');
+const Provee = use ('App/Models/Modelos/Vendedor');
 
 class ProveedoreController {
 
     async crear({request, response}) {
-        const proveedor = await Provee()
-        const {nombre, direccion, ciudad, compania, telefono} = request.all()
+        const proveedor = new Provee()
+        let obj = request.all()
 
-        proveedor.nombre  = nombre
-        proveedor.direccion = direccion
-        proveedor.ciudad    = ciudad
-        proveedor.compania   = compania
-        proveedor.telefono       = telefono
+        proveedor.nombre  = obj.nombre
+        proveedor.direccion = obj.direccion
+        proveedor.ciudad    = obj.ciudad
+        proveedor.compania   = obj.compania
+        proveedor.telefono       = obj.telefono
 
 
         await proveedor.save()

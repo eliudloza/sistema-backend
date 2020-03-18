@@ -6,7 +6,7 @@ class EmpleadoController {
 
     async crearEmpleado({request, response}){
 
-      let empleado = await Empleado()
+      const empleado = new Empleado()
       let obj = request.all()
 
       empleado.nombre = obj.nombre
@@ -28,7 +28,7 @@ class EmpleadoController {
     }
 
     async eliminarEmpleado({request}){
-      const  empleado = await Empleado().find(request.id)
+      const  empleado = new Empleado().find(request.id)
 
         if(empleado.delete())
         return response.json(empleado, 200)
@@ -36,7 +36,7 @@ class EmpleadoController {
     }
 
     async actualizarEmpleado({response,request}){
-       const empleado = await Empleado.find(request.id)
+       const empleado = new Empleado().find(request.id)
         const {nombre, ap_paterno, ap_materno,direccion, ciudad, tel} = request.all()
 
         empleado.nombre = nombre
