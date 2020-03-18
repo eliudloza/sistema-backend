@@ -12,11 +12,16 @@ class ProveedoreController {
         proveedor.direccion = obj.direccion
         proveedor.ciudad    = obj.ciudad
         proveedor.compania   = obj.compania
-        proveedor.telefono       = obj.telefono
+        proveedor.telefono    = obj.telefono
 
-
-        await proveedor.save()
-        return response.send("proveedor creada")
+        try {
+            let data = await proveedor.save()
+            if(data) {
+              return response.status(201).send({message: "Proveedor creado con exito"})
+            }
+        } catch(error) {
+            return response.status(401)
+        }
     }
 
     async  eliminarProveedor( {request,response}) {
@@ -41,7 +46,7 @@ class ProveedoreController {
     }
 
     async index({response}){
-        const  data = await Producto.all()
+        const  data = await Provee.all()
 
         return response.status(200).json(data)
     }

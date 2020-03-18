@@ -5,9 +5,6 @@ const Model = use('Model')
 
 class Orden extends Model {
     
-    static get connection () {
-        return 'mysql'
-      }
 }
 
 module.exports = Orden

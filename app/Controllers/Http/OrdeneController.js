@@ -13,8 +13,8 @@ class OrdeneController {
         orden.cliente = obj.cliente
 
         if (orden.save())
-        return response().json(orden, 202)
-    return response.json(null,422)
+        return response.json(orden, 202)
+            return response.json(null,422)
         
     }
 
