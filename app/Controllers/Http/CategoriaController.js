@@ -14,24 +14,26 @@ class CategoriaController {
         return response.send("Categoria creada correctamente")
     }
 
-    async eliminarCategoria({request, response}){
-        const categoria = new Cate.find(request.id)
+    async delete({params, response}){
+        const id = params.id
+        const categoria = await Cate.findOrFail(id)
 
         if(categoria.delete())
-            return response().json(categoria,202);
+            return response().json({'respuesta': 'Categoria eliminada'});
         return response().json(null,422);
     }
 
-    async actualizarCategoria({response,request}){
-        const categoria = new Cate.find(request.id)
+    async update ({response,request,params}){
+        const id = params.id
         const {nombre, descripcion} = request.all()
+        const categoria = await Cate.findOrFail(id)
 
-        categoria.nombre = nombre;
-        categoria.descripcion = descripcion;
+        categoria.nombre = nombre
+        categoria.descripcion = descripcion
 
-        if(categoria.save())
-            return response().json(categoria,202);
-        return response().json(null,422);
+        await categoria.save()
+        return response.json({'respuesta': 'Categoria actualizada'});
+        
     }
 
      async index({response}){

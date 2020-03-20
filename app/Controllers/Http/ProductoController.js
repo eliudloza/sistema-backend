@@ -5,18 +5,18 @@ const Producto= use ('App/Models/Modelos/Producto');
 class ProductoController {
 
     async  crearProducto({request, response}){
-        const producto = await Producto()
-        const {nombre, precio, cantidad, categoria, proveedor} = request.all()
+        const producto = new Producto()
+        const {nombre, precio, cantidad, categoria, vendedor} = request.all()
         
 
         producto.nombre = nombre
         producto.precio= precio
         producto.cantidad = cantidad
         producto.categoria = categoria
-        producto.proveedor = proveedor
+        producto.vendedor = vendedor
 
-        producto.save()
-        return response().json(producto, 202)
+        await producto.save()
+        return response.json(producto, 202)
     
     }
 
@@ -29,18 +29,20 @@ class ProductoController {
         return response().json(null,422)
     }
 
-    async actualizarProducto( {request, response}) {
-        const producto = await Producto.find(request.id)  
+    async update( {params, request, response}) {
+
+        const id = params.id
+        const {nombre, precio, cantidad, categoria, vendedor} = request.all()
+        const producto = await Producto.findOrFail(id)
 
         producto.nombre = nombre
-        producto.precio= precio
-        producto.cantidad = cantidad
-        producto.categoria = categoria
-        producto.proveedor = proveedor
+        producto.precio = precio
+        producto.cantidad =cantidad
+        producto.categoria = categoria 
+        producto.vendedor = vendedor
 
-        if(producto.save())
-            return response().json(producto,202)
-        return response().json(null,422)
+        await producto.save()
+        return response.json({'respuesta': 'Producto actualizada'});
     }
     async index({response}){
        const  data = await Producto.all()

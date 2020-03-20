@@ -28,20 +28,20 @@ Route.post('logout', 'UserController.logout')
 
 //Categoria
 Route.post('/creaCate', 'CategoriaController.crearCategoria')
-Route.delete('/eliminaCate', 'CategoriaController.eliminarCategoria')
-Route.post('/actualizaCate', 'CategoriaController.actualizarCategoria')
+Route.delete('/eliminaCate', 'CategoriaController.delete')
+Route.post('/actualizaCate/:id', 'CategoriaController.update')
 Route.get('/indexCate', 'CategoriaController.index')
 
 //Vendedores
 Route.post('/crearVendedor', 'VendedorController.crear')
 Route.delete('/eliminaProvee', 'ProveedoreController.eliminarProveedor')
 Route.post('/actualizaProvee', 'ProveedoreController.actualizarProveedor')
-Route.get('/indexProvee', 'ProveedoreController.index')
+Route.get('/indexProvee', 'VendedorController.index')
 
 //Productos
 Route.post('/creaProduc', 'ProductoController.crearProducto')
 Route.delete('/eliminaProduc', 'ProductoController.eliminarProducto')
-Route.post('/actualizaProduc', 'ProductoController.actualizarProducto')
+Route.post('/actualizaProduc', 'ProductoController.update')
 Route.get('/indexProduc', 'ProductoController.index')
 
 
