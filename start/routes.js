@@ -41,7 +41,7 @@ Route.get('/indexProvee', 'VendedorController.index')
 //Productos
 Route.post('/creaProduc', 'ProductoController.crearProducto')
 Route.delete('/eliminaProduc', 'ProductoController.eliminarProducto')
-Route.post('/actualizaProduc', 'ProductoController.update')
+Route.post('/actualizaProduc/:id', 'ProductoController.update')
 Route.get('/indexProduc', 'ProductoController.index')
 
 
