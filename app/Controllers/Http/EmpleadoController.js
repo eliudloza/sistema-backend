@@ -15,14 +15,10 @@ class EmpleadoController {
       empleado.direccion = obj.direccion
       empleado.tel = obj.tel
 
-      try {
+    
         let data = await empleado.save()
-        if(data) {
           return response.status(201).send({message: "Empleado creado con exito"})
-        }
-      } catch(error) {
-        return response.status(401)
-      }
+       
 
     }
 

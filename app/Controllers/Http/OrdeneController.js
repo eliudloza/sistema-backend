@@ -12,14 +12,10 @@ class OrdeneController {
         orden.empleado = obj.empleado
         orden.cliente=obj.cliente
   
-        try {
-          let data = await orden.save()
-          if(data) {
-            return response.status(201).send({message: "Orden creado con exito"})
-          }
-        } catch(error) {
-          return response.status(401)
-        }
+        let data = await orden.save()
+
+       return response.status(201).send({message: "Orden creado con exito"})
+         
       }
   
       async delete({params, response}){

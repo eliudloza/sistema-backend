@@ -65,8 +65,8 @@ Route.get('/indexOrden', 'OrdeneController.index')
 
 //Detalle
 Route.post('/creaDetalle', 'DetalleDeOrdenController.crearDetalle')
-Route.delete('/eliminaDetalle', 'DetalleDeOrdeneController.eliminarDetalle')
-Route.post('/actualizaDetalle', 'DetalleDeOrdeneController.actualizarDetalle')
+Route.delete('/eliminaDetalle/:id', 'DetalleDeOrdeneController.delete')
+Route.post('/actualizaDetalle/:id', 'DetalleDeOrdeneController.update')
 Route.get('/indexDetalle', 'DetalleDeOrdeneController.index')
 
 }).prefix('/usuarios')

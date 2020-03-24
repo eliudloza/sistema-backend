@@ -13,14 +13,10 @@ class UserController {
     user.email = obj.email
     user.password = obj.password
 
-    try {
+
       let data = await user.save()
-      if(data) {
         return response.status(201).send({message: "Usuario creado con exito"})
-      }
-    } catch(error) {
-      return response.status(401)
-    }
+      
   }
 
     async login({request,response,auth})
