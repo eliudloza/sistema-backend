@@ -5,22 +5,28 @@ class CategoriaController {
 
      async crearCategoria({request, response}) {
         const categoria = new Cate()
-        const {nombre, descripcion} = request.all()
+      let obj = request.all()
 
-        categoria.nombre = nombre
-        categoria.descripcion = descripcion
+      categoria.nombre = obj.nombre
+      categoria.descripcion = obj.descripcion
 
-        await categoria.save()
-        return response.send("Categoria creada correctamente")
+      try {
+        let data = await categoria.save()
+        if(data) {
+          return response.status(201).send({message: "Genero creado con exito"})
+        }
+      } catch(error) {
+        return response.status(401)
+      }
     }
 
     async delete({params, response}){
         const id = params.id
         const categoria = await Cate.findOrFail(id)
 
-        if(categoria.delete())
-            return response().json({'respuesta': 'Categoria eliminada'});
-        return response().json(null,422);
+        await categoria.delete()
+        return response.json({'respuesta': 'Categoria eliminada'});
+        
     }
 
     async update ({response,request,params}){

@@ -11,7 +11,6 @@ class EmpleadosSchema extends Schema {
       table.string('ap_paterno')
       table.string('ap_materno')
       table.string('direccion')
-      table.string('ciudad')
       table.integer('tel')
       table.timestamps()
     })

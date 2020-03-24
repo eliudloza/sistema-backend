@@ -8,10 +8,8 @@ class VendedorSchema extends Schema {
     this.create('vendedor', (table) => {
       table.increments('id')
       table.string('nombre')
-      table.string('direccion')
-      table.string('ciudad')
-      table.string('compania')
-      table.integer('telefono')
+      table.string('biografia')
+      table.string('pais')
       table.timestamps()
     })
   }

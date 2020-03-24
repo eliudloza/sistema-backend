@@ -13,7 +13,6 @@ class EmpleadoController {
       empleado.ap_paterno = obj.ap_paterno
       empleado.ap_materno = obj.ap_materno
       empleado.direccion = obj.direccion
-      empleado.ciudad = obj.ciudad
       empleado.tel = obj.tel
 
       try {
@@ -27,29 +26,31 @@ class EmpleadoController {
 
     }
 
-    async eliminarEmpleado({request}){
-      const  empleado = new Empleado().find(request.id)
+    async delete({params, response}){
+      const id = params.id
+      const empleado = await Empleado.findOrFail(id)
 
-        if(empleado.delete())
-        return response.json(empleado, 200)
+      if(empleado.delete())
+          return response.json({'respuesta': 'Empleado eliminada'});
+      return response.json(null,422);
+  }
 
-    }
+  async update( {params, request, response}) {
 
-    async actualizarEmpleado({response,request}){
-       const empleado = new Empleado().find(request.id)
-        const {nombre, ap_paterno, ap_materno,direccion, ciudad, tel} = request.all()
+      const id = params.id
+      const {nombre, ap_paterno, ap_materno, direccion, tel} = request.all()
+      const empleado = await Empleado.findOrFail(id)
 
-        empleado.nombre = nombre
-        empleado.ap_paterno = ap_paterno
-        empleado.ap_materno = ap_materno
-        empleado.direccion = direccion
-        empleado.ciudad = ciudad
-        empleado.tel = tel
+      
+      empleado.nombre = nombre
+      empleado.ap_paterno = ap_paterno
+      empleado.ap_materno = ap_materno
+      empleado.direccion = direccion
+      empleado.tel = tel
 
-        await empleado.save()
-        return response.json(empleado, 200)
-
-    }
+      await empleado.save()
+      return response.json({'respuesta': 'Empleado actualizada'});
+  }
 
     async index({response}){
       const  data = await Empleado.all()

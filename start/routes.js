@@ -28,39 +28,39 @@ Route.post('logout', 'UserController.logout')
 
 //Categoria
 Route.post('/creaCate', 'CategoriaController.crearCategoria')
-Route.delete('/eliminaCate', 'CategoriaController.delete')
+Route.delete('/eliminaCate/:id', 'CategoriaController.delete')
 Route.post('/actualizaCate/:id', 'CategoriaController.update')
 Route.get('/indexCate', 'CategoriaController.index')
 
 //Vendedores
 Route.post('/crearVendedor', 'VendedorController.crear')
-Route.delete('/eliminaProvee', 'ProveedoreController.eliminarProveedor')
-Route.post('/actualizaProvee', 'ProveedoreController.actualizarProveedor')
+Route.delete('/eliminaVendedor/:id', 'VendedorController.delete')
+Route.post('/actualizaVendedor/:id', 'VendedorController.update')
 Route.get('/indexProvee', 'VendedorController.index')
 
 //Productos
 Route.post('/creaProduc', 'ProductoController.crearProducto')
-Route.post('/eliminaProduc/:id', 'ProductoController.eliminarProducto')
+Route.delete('/eliminaProduc/:id', 'ProductoController.delete')
 Route.post('/actualizaProduc/:id', 'ProductoController.update')
 Route.get('/indexProduc', 'ProductoController.index')
 
 
 //Clientes
 Route.post('/creaCliente', 'ClienteController.crearCliente')
-Route.delete('/eliminaCliente', 'ClienteController.eliminarCliente')
-Route.post('/actualizaCliente', 'ClienteController.actualizarCliente')
+Route.delete('/eliminaCliente/:id', 'ClienteController.delete')
+Route.post('/actualizaCliente/:id', 'ClienteController.update')
 Route.get('/indexCliente', 'ClienteController.index')
 
 //Empleados
 Route.post('/crearEmpleado', 'EmpleadoController.crearEmpleado')
-Route.delete('/eliminaEmple', 'EmpleadoController.eliminarEmpleado')
-Route.post('/actualizaEmple', 'EmpleadoController.actualizarEmpleado')
+Route.delete('/eliminaEmple/:id', 'EmpleadoController.delete')
+Route.post('/actualizaEmple/:id', 'EmpleadoController.update')
 Route.get('/indexEmple', 'EmpleadoController.index')
 
 //Ordenes
 Route.post('/creaOrden', 'OrdeneController.crearO')
-Route.delete('/eliminaOrden', 'OrdeneController.eliminarOrden')
-Route.post('/actualizaOrden', 'OrdeneController.actualizarOrden')
+Route.delete('/eliminaOrden/:id', 'OrdeneController.delete')
+Route.post('/actualizaOrden/:id', 'OrdeneController.update')
 Route.get('/indexOrden', 'OrdeneController.index')
 
 //Detalle

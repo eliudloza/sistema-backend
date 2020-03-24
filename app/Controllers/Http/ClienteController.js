@@ -24,32 +24,31 @@ class ClienteController {
 
     }
 
-    async eliminarCliente({params, response}){
-        const cliente = await Cliente.find(params.id)
+    async delete({params, response}){
+      const id = params.id
+      const cliente = await Cliente.findOrFail(id)
 
-        if(!cliente){ 
-          return response.status(404).json( {data : 'Datos no encontrados'})
-        }
-        await cliente.delete()
-        return response.status(204).json()
+      if(cliente.delete())
+          return response.json({'respuesta': 'Cliente eliminada'});
+      return response.json(null,422);
+  }
 
-    }
+  async update( {params, request, response}) {
 
-    async actualizarCliente({response,request}){
-        const cliente = new Cliente.find(request.id)
-        const {nombre, ap_paterno, ap_materno,direccion, ciudad, telefono} = request.all()
+      const id = params.id
+      const {nombre, ap_paterno, ap_materno, direccion, ciudad, tel} = request.all()
+      const cliente = await Cliente.findOrFail(id)
 
-        cliente.nombre = nombre
-        cliente.ap_paterno = ap_paterno
-        cliente.ap_materno = ap_materno
-        cliente.direccion = direccion
-        cliente.ciudad = ciudad
-        cliente.telefono = telefono
+      cliente.nombre = nombre
+      cliente.ap_paterno = ap_paterno
+      cliente.ap_materno = ap_materno
+      cliente.direccion = direccion 
+      cliente.ciudad = ciudad
+      cliente.tel = tel
 
-        await cliente.save()
-        return response.json(cliente, 200)
-
-    }
+      await cliente.save()
+      return response.json({'respuesta': 'Cliente actualizada'});
+  }
 
     async index({response}){
       const  data = await Cliente.all()
